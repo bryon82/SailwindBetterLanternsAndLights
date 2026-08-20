@@ -1,5 +1,7 @@
 # BetterLanternsAndLights
 
+Adds lantern and island street light improvements.
+
 ## Features
 
 * Lanterns and island street lights flicker, both visually and in the light they produce, as if they have a flame inside of them.
@@ -7,7 +9,9 @@
 * The ability to deactivate ambient player light.
 * The ability to activate a lantern when it is in the players inventory.
 
-* All of the above features can be enabled/disabled from the [BepInEx configuration manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) in game without the need to restart. If the lantern/street light flicker is disabled while the light is currently flickering, turn off the latern/wait for the street light to turn off and it will not flicker again until re-enabled.
+* All of the above features can be enabled/disabled from the [BepInEx configuration manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) in game without the need to restart. If the lantern/street light flicker is disabled while the light is currently flickering, turn off the lantern/wait for the street light to turn off and it will not flicker again until re-enabled.
+
+https://github.com/user-attachments/assets/5f1c3305-ec15-4f88-9659-ceb61a25f04a
 
 ### Installation
 
