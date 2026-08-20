@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("BetterLanternsAndLights")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyConfiguration("https://github.com/bryon82/SailwindBetterLanternsAndLights")]
+[assembly: AssemblyCompany("raddude")]
 [assembly: AssemblyProduct("BetterLanternsAndLights")]
 [assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]

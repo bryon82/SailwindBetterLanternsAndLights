@@ -33,7 +33,7 @@ namespace BetterLanternsAndLights
                 paperRenderer = islandStreetlight.GetPrivateField<Renderer>("renderer");
                 paperOffMat = islandStreetlight.GetPrivateField<Material>("offMat");
                 paperOnMat = paperRenderer?.sharedMaterial;
-            }            
+            }
         }
 
         internal void SetFlicker(bool enable)

@@ -5,7 +5,7 @@ using static BetterLanternsAndLights.BLL_Plugin;
 namespace BetterLanternsAndLights
 {
     internal class Configs
-    {        
+    {
         internal static ConfigEntry<bool> enableLanternFlicker;
         internal static ConfigEntry<bool> addDcGateLamps;
         internal static ConfigEntry<bool> enablePlayerLight;

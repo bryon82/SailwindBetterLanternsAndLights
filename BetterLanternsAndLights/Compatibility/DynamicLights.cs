@@ -21,6 +21,6 @@ namespace BetterLanternsAndLights
                 return;
 
             flicker.SetFlicker(newState);
-        }    
+        }
     }
 }
