@@ -7,7 +7,7 @@
 * The ability to deactivate ambient player light.
 * The ability to activate a lantern when it is in the players inventory.
 
-* All of the above features can be enabled/disabled from the [BepInEx configuration manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) in game without the need to restart. If the lantern/street light flicker is disabled while the light is currently flickering, turn off the latern/wait for the street light to turn off and it will not flicer again until re-enabled.
+* All of the above features can be enabled/disabled from the [BepInEx configuration manager](https://github.com/BepInEx/BepInEx.ConfigurationManager) in game without the need to restart. If the lantern/street light flicker is disabled while the light is currently flickering, turn off the latern/wait for the street light to turn off and it will not flicker again until re-enabled.
 
 ### Installation
 
