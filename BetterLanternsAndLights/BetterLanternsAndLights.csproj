@@ -61,6 +61,7 @@
     <Compile Include="BLL_Plugin.cs" />
     <Compile Include="Compatibility\BetterNPCBoats.cs" />
     <Compile Include="Compatibility\DynamicLights.cs" />
+    <Compile Include="Patches\CandlePatches.cs" />
     <Compile Include="Patches\LanternPatches.cs" />
     <Compile Include="Patches\PlayerLightPatches.cs" />
     <Compile Include="Patches\StreetLightPatches.cs" />

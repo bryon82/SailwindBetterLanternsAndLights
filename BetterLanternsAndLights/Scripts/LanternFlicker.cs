@@ -7,10 +7,11 @@ namespace BetterLanternsAndLights
     internal class LanternFlicker : MonoBehaviour
     {
         private Coroutine flickerCoroutine;
-        internal Material paperOnMat;
-        internal Material paperOffMat;
-        public Light light;
-        public Renderer paperRenderer;
+        private Material paperMaterial;
+        private Material paperOnMat;
+        private Material paperOffMat;
+        private Light light;
+        private Color baseEmission;
         private float minIntensity = 1f;
         private float maxIntensity = 1.5f;
         private float minEmission = 0.5f;
@@ -19,7 +20,11 @@ namespace BetterLanternsAndLights
         private void Awake()
         {
             light = GetComponentInChildren<Light>();
+            maxIntensity = light.intensity;
+            minIntensity = light.intensity - 0.5f;
+
             var shipItemLight = GetComponent<ShipItemLight>();
+            Renderer paperRenderer = null;
             if (shipItemLight != null)
             {
                 paperRenderer = shipItemLight.GetPrivateField<Renderer>("paperRenderer");
@@ -34,6 +39,12 @@ namespace BetterLanternsAndLights
                 paperOffMat = islandStreetlight.GetPrivateField<Material>("offMat");
                 paperOnMat = paperRenderer?.sharedMaterial;
             }
+
+            if (paperRenderer != null)
+                paperMaterial = paperRenderer.material;
+
+            if (paperOnMat != null)
+                baseEmission = paperOnMat.GetColor("_EmissionColor");
         }
 
         internal void SetFlicker(bool enable)
@@ -77,7 +88,7 @@ namespace BetterLanternsAndLights
                 }
 
                 float materialAmount = Mathf.Lerp(0.9f, 1.0f, flicker);
-                paperRenderer.material.Lerp(
+                paperMaterial.Lerp(
                     paperOffMat,
                     paperOnMat,
                     materialAmount
@@ -89,8 +100,7 @@ namespace BetterLanternsAndLights
                     flicker
                 );
 
-                var baseEmission = paperOnMat.GetColor("_EmissionColor");
-                paperRenderer.material.SetColor(
+                paperMaterial.SetColor(
                     "_EmissionColor",
                     baseEmission * emissionStrength
                 );

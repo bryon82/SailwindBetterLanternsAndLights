@@ -16,7 +16,7 @@ namespace BetterLanternsAndLights
         private static void ToggleLanternsPostfix(object __instance, bool state)
         {
             var component = (Component)__instance;
-            var flicker = component.GetComponent<LanternFlicker>();
+            var flicker = component.GetComponentInChildren<LanternFlicker>();
             if (flicker == null)
                 return;
 
