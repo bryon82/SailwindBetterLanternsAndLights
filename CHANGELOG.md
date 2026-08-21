@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Flicker to candles in island buildings, stove market stalls, and braziers.
 - Flicker to stoves and smokers.
-- Wind affects flicker for laterns, stoves, and smokers.
+- Wind affects flicker for lanterns, stoves, and smokers.
 
 ## [v1.0.0] - 2026-08-20
 
