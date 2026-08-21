@@ -4,7 +4,8 @@ Adds lantern and island street light improvements.
 
 ## Features
 
-* Lanterns and island street lights flicker, both visually and in the light they produce, as if they have a flame inside of them.
+* Lanterns, stoves, smokers, market stove stalls, candles in buildings, braziers, and island street lights flicker, both visually and in the light they produce, as if they have a flame inside of them.
+* Wind affects the flicker for lanterns, stoves, and smokers.
 * Lights added to the gate to Dragon Cliffs.
 * The ability to deactivate ambient player light.
 * The ability to activate a lantern when it is in the players inventory.

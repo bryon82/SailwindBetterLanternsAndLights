@@ -64,6 +64,7 @@
     <Compile Include="Patches\CandlePatches.cs" />
     <Compile Include="Patches\LanternPatches.cs" />
     <Compile Include="Patches\PlayerLightPatches.cs" />
+    <Compile Include="Patches\StovePatches.cs" />
     <Compile Include="Patches\StreetLightPatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\DragonCliffs.cs" />

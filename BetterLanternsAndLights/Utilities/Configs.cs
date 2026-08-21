@@ -7,11 +7,9 @@ namespace BetterLanternsAndLights
     internal class Configs
     {
         internal static ConfigEntry<bool> enableLanternFlicker;
-        internal static ConfigEntry<bool> addDcGateLamps;
+        internal static ConfigEntry<bool> addDcGateLights;
         internal static ConfigEntry<bool> enablePlayerLight;
         internal static ConfigEntry<bool> enableInventoryLantern;
-
-        private static bool _lastAddDcGateLamps;
 
         internal static void InitializeConfigs()
         {
@@ -22,9 +20,9 @@ namespace BetterLanternsAndLights
                 "Enable lantern flicker",
                 true);
 
-            addDcGateLamps = config.Bind(
+            addDcGateLights = config.Bind(
                 "Settings",
-                "Add Dragon Cliffs Gate Lamps",
+                "Add Dragon Cliffs Gate Lights",
                 true);
 
             enablePlayerLight = config.Bind(
@@ -39,20 +37,21 @@ namespace BetterLanternsAndLights
                 true,
                 "The ability to activate the lantern in an inventory slot by right-clicking it (or using other activation button).");
 
-            _lastAddDcGateLamps = addDcGateLamps.Value;
+            enablePlayerLight.SettingChanged += (sender, args) => UpdatePlayerLight();
+            addDcGateLights.SettingChanged += (sender, args) => UpdateDCGateLights();            
         }
 
-        internal static void UpdateConfigs()
+        internal static void UpdateDCGateLights()
         {
-            var currentAddDcGateLamps = addDcGateLamps.Value;
-            if (currentAddDcGateLamps != _lastAddDcGateLamps && DragonCliffs.DCGateLampGOs != null)
+            if (DragonCliffs.DCGateLightGOs != null)
             {
-                if (SceneManager.GetSceneByName(DRAGON_CLIFFS_SCENE).isLoaded)
-                    DragonCliffs.DCGateLampGOs.ForEach(lamp => lamp?.SetActive(currentAddDcGateLamps));
-
-                _lastAddDcGateLamps = currentAddDcGateLamps;
+                if (SceneManager.GetSceneByName(DragonCliffs.DRAGON_CLIFFS_SCENE).isLoaded)
+                    DragonCliffs.DCGateLightGOs.ForEach(light => light?.SetActive(addDcGateLights.Value));
             }
+        }
 
+        internal static void UpdatePlayerLight()
+        {
             if (PlayerLight != null && PlayerLight.enabled != enablePlayerLight.Value)
             {
                 PlayerLight.enabled = enablePlayerLight.Value;

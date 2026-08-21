@@ -7,14 +7,14 @@ namespace BetterLanternsAndLights
     internal class LanternFlicker : MonoBehaviour
     {
         private bool isLantern = false;
-        private Coroutine flickerCoroutine;
+        internal Coroutine flickerCoroutine;
         private Material paperMaterial;
         private Material paperOnMat;
         private Material paperOffMat;
         private Light light;
         private Color baseEmission;
         private float minIntensity = 1f;
-        private float maxIntensity = 1.5f;
+        internal float maxIntensity = 1.5f;
         private float minEmission = 0.5f;
         private float maxEmission = 0.8f;
         private float minWindSpeed = 20f;
@@ -25,6 +25,7 @@ namespace BetterLanternsAndLights
         private float maxFastSpeed = 15f;
         private float minFastAmount = 0.2f;
         private float maxFastAmount = 0.5f;
+        internal float lightIntensity;
 
         private void Awake()
         {
@@ -96,7 +97,8 @@ namespace BetterLanternsAndLights
                 var flicker = slow * slowAmount + fast * fastAmount;
                 flicker = Mathf.Clamp01(flicker);
 
-                light.intensity = Mathf.Lerp(minIntensity, maxIntensity, flicker);
+                lightIntensity = Mathf.Lerp(minIntensity, maxIntensity, flicker);
+                light.intensity = lightIntensity;
 
                 if (paperOffMat == null)
                 {

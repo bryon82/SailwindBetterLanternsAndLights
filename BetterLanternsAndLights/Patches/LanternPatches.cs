@@ -12,10 +12,7 @@ namespace BetterLanternsAndLights
                 var lanterns = new int[] { 110, 111, 112, 113, 114, 133, 134 };
 
                 foreach (var lanternId in lanterns)
-                {
-                    var lantern = __instance.directory[lanternId];
-                    lantern.AddComponent<LanternFlicker>();                    
-                }
+                    __instance.directory[lanternId].AddComponent<LanternFlicker>();
             }
         }
 
@@ -26,7 +23,7 @@ namespace BetterLanternsAndLights
             {
                 var flicker = __instance.GetComponent<LanternFlicker>();
                 if (flicker == null)
-                    return;              
+                    return;
 
                 flicker.SetFlicker(state);
             }

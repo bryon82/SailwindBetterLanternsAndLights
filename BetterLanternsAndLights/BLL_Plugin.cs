@@ -19,7 +19,6 @@ namespace BetterLanternsAndLights
         public const string DYNAMIC_LIGHTS_GUID = "com.nandbrew.dynamiclights";
         public const string BETTER_NPC_BOATS_GUID = "com.raddude.betternpcboats";
 
-        internal const string DRAGON_CLIFFS_SCENE = "island 9 E Dragon Cliffs";
         public static Light PlayerLight { get; internal set; }
 
         internal static BLL_Plugin Instance { get; private set; }
@@ -63,20 +62,7 @@ namespace BetterLanternsAndLights
                     break;
             }
 
-            SceneManager.sceneLoaded += SceneLoaded;
-        }
-
-        private void Update()
-        {
-            Configs.UpdateConfigs();
-        }
-
-        private void SceneLoaded(Scene scene, LoadSceneMode _)
-        {
-            if (scene.name == DRAGON_CLIFFS_SCENE)
-            {
-                DragonCliffs.Initialize();
-            }
-        }
+            SceneManager.sceneLoaded += DragonCliffs.SceneLoaded;
+        }        
     }
 }
