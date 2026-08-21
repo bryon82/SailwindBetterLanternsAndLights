@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.
 ## [v1.1.0] - 2026-08-20
 
 ### Added
-
+- Flicker to candles in island buildings.
+- Wind affect on flicker.
 
 ## [v1.0.0] - 2026-08-20
 
