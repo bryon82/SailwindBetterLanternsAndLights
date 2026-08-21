@@ -6,6 +6,7 @@ namespace BetterLanternsAndLights
 {
     internal class LanternFlicker : MonoBehaviour
     {
+        private bool isLantern = false;
         private Coroutine flickerCoroutine;
         private Material paperMaterial;
         private Material paperOnMat;
@@ -16,6 +17,14 @@ namespace BetterLanternsAndLights
         private float maxIntensity = 1.5f;
         private float minEmission = 0.5f;
         private float maxEmission = 0.8f;
+        private float minWindSpeed = 20f;
+        private float maxWindSpeed = 40f;
+        private float minFlickerSpeed = 0.5f;
+        private float maxFlickerSpeed = 2f;
+        private float minFastSpeed = 6f;
+        private float maxFastSpeed = 15f;
+        private float minFastAmount = 0.2f;
+        private float maxFastAmount = 0.5f;
 
         private void Awake()
         {
@@ -30,6 +39,7 @@ namespace BetterLanternsAndLights
                 paperRenderer = shipItemLight.GetPrivateField<Renderer>("paperRenderer");
                 paperOffMat = shipItemLight.GetPrivateField<Material>("paperOffMat");
                 paperOnMat = paperRenderer?.sharedMaterial;
+                isLantern = true;
             }
 
             var islandStreetlight = GetComponent<IslandStreetlight>();
@@ -62,24 +72,31 @@ namespace BetterLanternsAndLights
 
         private IEnumerator Flicker()
         {
-            float slowTime = Random.value * 100f;
-            float fastTime = Random.value * 100f;
+            var slowTime = Random.value * 100f;
+            var fastTime = Random.value * 100f;
 
             while (true)
             {
-                slowTime += Time.deltaTime * 0.5f;
-                fastTime += Time.deltaTime * 6f;
+                var windSpeed = Wind.currentWind.magnitude;
+                if (GameState.indoors || !isLantern)
+                    windSpeed = 0f;
 
-                float slow = Mathf.PerlinNoise(slowTime, 0f);
-                float fast = Mathf.PerlinNoise(fastTime, 100f);
-                float flicker = slow * 0.8f + fast * 0.2f;
+                var windAmount = Mathf.InverseLerp(minWindSpeed, maxWindSpeed, windSpeed);
+
+                var slowSpeed = Mathf.Lerp(minFlickerSpeed, maxFlickerSpeed, windAmount);
+                var fastSpeed = Mathf.Lerp(minFastSpeed, maxFastSpeed, windAmount);
+                slowTime += Time.deltaTime * slowSpeed;
+                fastTime += Time.deltaTime * fastSpeed;
+                var slow = Mathf.PerlinNoise(slowTime, 0f);
+                var fast = Mathf.PerlinNoise(fastTime, 100f);
+
+                var fastAmount = Mathf.Lerp(minFastAmount, maxFastAmount, windAmount);
+                var slowAmount = 1f - fastAmount;
+
+                var flicker = slow * slowAmount + fast * fastAmount;
                 flicker = Mathf.Clamp01(flicker);
 
-                light.intensity = Mathf.Lerp(
-                    minIntensity,
-                    maxIntensity,
-                    flicker
-                );
+                light.intensity = Mathf.Lerp(minIntensity, maxIntensity, flicker);
 
                 if (paperOffMat == null)
                 {
@@ -87,23 +104,11 @@ namespace BetterLanternsAndLights
                     continue;
                 }
 
-                float materialAmount = Mathf.Lerp(0.9f, 1.0f, flicker);
-                paperMaterial.Lerp(
-                    paperOffMat,
-                    paperOnMat,
-                    materialAmount
-                );
+                var materialAmount = Mathf.Lerp(0.9f, 1.0f, flicker);
+                paperMaterial.Lerp(paperOffMat, paperOnMat, materialAmount);
 
-                float emissionStrength = Mathf.Lerp(
-                    minEmission,
-                    maxEmission,
-                    flicker
-                );
-
-                paperMaterial.SetColor(
-                    "_EmissionColor",
-                    baseEmission * emissionStrength
-                );
+                var emissionStrength = Mathf.Lerp(minEmission, maxEmission, flicker);
+                paperMaterial.SetColor("_EmissionColor", baseEmission * emissionStrength);
 
                 yield return null;
             }
