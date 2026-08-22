@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v1.1.0] - 2026-08-20
+## [v1.1.0] - 2026-08-22
+
+### Fixed
+- Check for if a lantern, stove, or smoker is inside.
+
+## [v1.1.0] - 2026-08-21
 
 ### Added
 - Flicker to candles in island buildings, stove market stalls, and braziers.

@@ -6,7 +6,7 @@ namespace BetterLanternsAndLights
 {
     internal class LanternFlicker : MonoBehaviour
     {
-        private bool isLantern = false;
+        private bool isStreetLight = false;
         internal Coroutine flickerCoroutine;
         private Material paperMaterial;
         private Material paperOnMat;
@@ -26,6 +26,7 @@ namespace BetterLanternsAndLights
         private float minFastAmount = 0.2f;
         private float maxFastAmount = 0.5f;
         internal float lightIntensity;
+        internal bool isInside = false;
 
         private void Awake()
         {
@@ -40,7 +41,6 @@ namespace BetterLanternsAndLights
                 paperRenderer = shipItemLight.GetPrivateField<Renderer>("paperRenderer");
                 paperOffMat = shipItemLight.GetPrivateField<Material>("paperOffMat");
                 paperOnMat = paperRenderer?.sharedMaterial;
-                isLantern = true;
             }
 
             var islandStreetlight = GetComponent<IslandStreetlight>();
@@ -49,6 +49,7 @@ namespace BetterLanternsAndLights
                 paperRenderer = islandStreetlight.GetPrivateField<Renderer>("renderer");
                 paperOffMat = islandStreetlight.GetPrivateField<Material>("offMat");
                 paperOnMat = paperRenderer?.sharedMaterial;
+                isStreetLight = true;
             }
 
             if (paperRenderer != null)
@@ -79,7 +80,7 @@ namespace BetterLanternsAndLights
             while (true)
             {
                 var windSpeed = Wind.currentWind.magnitude;
-                if (GameState.indoors || !isLantern)
+                if (isInside || isStreetLight)
                     windSpeed = 0f;
 
                 var windAmount = Mathf.InverseLerp(minWindSpeed, maxWindSpeed, windSpeed);

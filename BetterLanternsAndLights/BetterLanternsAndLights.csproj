@@ -56,12 +56,17 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\SteamLibrary\steamapps\common\Sailwind\Sailwind_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL_Plugin.cs" />
     <Compile Include="Compatibility\BetterNPCBoats.cs" />
     <Compile Include="Compatibility\DynamicLights.cs" />
-    <Compile Include="Patches\CandlePatches.cs" />
+    <Compile Include="Patches\InteriorPatches.cs" />
+    <Compile Include="Patches\IslandLightsPatches.cs" />
     <Compile Include="Patches\LanternPatches.cs" />
     <Compile Include="Patches\PlayerLightPatches.cs" />
     <Compile Include="Patches\StovePatches.cs" />

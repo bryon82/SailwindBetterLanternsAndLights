@@ -14,7 +14,7 @@ namespace BetterLanternsAndLights
     {
         public const string PLUGIN_GUID = "com.raddude.betterlanternsandlights";
         public const string PLUGIN_NAME = "Better Lanterns and Lights";
-        public const string PLUGIN_VERSION = "1.1.0";
+        public const string PLUGIN_VERSION = "1.1.1";
 
         public const string DYNAMIC_LIGHTS_GUID = "com.nandbrew.dynamiclights";
         public const string BETTER_NPC_BOATS_GUID = "com.raddude.betternpcboats";
