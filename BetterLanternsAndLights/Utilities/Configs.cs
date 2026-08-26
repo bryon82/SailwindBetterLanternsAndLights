@@ -35,7 +35,7 @@ namespace BetterLanternsAndLights
                 "Settings",
                 "Activate Lantern In Inventory",
                 true,
-                "The ability to activate the lantern in an inventory slot by right-clicking it (or using other activation button).");
+                "The ability to activate the lantern while it is in an inventory slot.");
 
             enablePlayerLight.SettingChanged += (sender, args) => UpdatePlayerLight();
             addDcGateLights.SettingChanged += (sender, args) => UpdateDCGateLights();            
@@ -43,19 +43,15 @@ namespace BetterLanternsAndLights
 
         internal static void UpdateDCGateLights()
         {
-            if (DragonCliffs.DCGateLightGOs != null)
-            {
-                if (SceneManager.GetSceneByName(DragonCliffs.DRAGON_CLIFFS_SCENE).isLoaded)
-                    DragonCliffs.DCGateLightGOs.ForEach(light => light?.SetActive(addDcGateLights.Value));
-            }
+            if (SceneManager.GetSceneByName(DragonCliffs.DRAGON_CLIFFS_SCENE).isLoaded)
+                foreach (var light in DragonCliffs.DCGateLightGOs)
+                    if (light != null) light.SetActive(addDcGateLights.Value);            
         }
 
         internal static void UpdatePlayerLight()
         {
-            if (PlayerLight != null && PlayerLight.enabled != enablePlayerLight.Value)
-            {
+            if (PlayerLight != null)
                 PlayerLight.enabled = enablePlayerLight.Value;
-            }
         }
     }
 }

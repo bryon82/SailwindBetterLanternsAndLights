@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static BetterLanternsAndLights.BLL_Plugin;
+using static BetterLanternsAndLights.Configs;
 
 namespace BetterLanternsAndLights
 {
@@ -36,10 +37,11 @@ namespace BetterLanternsAndLights
                 var gateLight = Object.Instantiate(light.gameObject, parent);
                 gateLight.transform.localScale = new Vector3(1.33f, 1.33f, 1.33f);
                 gateLight.transform.localPosition = position;
-                gateLight.transform.rotation = Quaternion.Euler(270f, 0f, 0f);
+                gateLight.transform.localEulerAngles = new Vector3(0f, 0f, 270f);
                 gateLight.GetComponent<Light>().range = 50f;
                 gateLight.GetComponent<Light>().intensity = 1.5f;
                 DCGateLightGOs.Add(gateLight);
+                gateLight.SetActive(addDcGateLights.Value);
             }
             LogDebug("Dragon Cliffs gate lights added");
         }

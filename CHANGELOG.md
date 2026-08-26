@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v1.1.0] - 2026-08-22
+## [v1.1.2] - 2026-08-25
+
+### Fixed
+- Not setting desired state of ambient player light on start.
+
+## [v1.1.1] - 2026-08-22
 
 ### Fixed
 - Check for if a lantern, stove, or smoker is inside.
